@@ -58,4 +58,10 @@ export default {
   background: rgb(67, 26, 144);
   margin: 10px;
 }
+
+@media (max-width: 600px) {
+  * {
+    font-size: 10px;
+  }
+}
 </style>

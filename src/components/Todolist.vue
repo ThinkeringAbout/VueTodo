@@ -5,11 +5,11 @@
     <router-link class="button" :to="'/notes/' + listIndex"
       ><span class="rotateButton">✏</span></router-link
     >
-    <button class="button" @click="taskDone">
-      <span class="greenAnimation">✔</span>
+    <button class="button greenAnimation" @click="taskDone">
+      <span>✔</span>
     </button>
-    <button class="button" @click="deleteItem">
-      <span class="redAnimation">X</span>
+    <button class="button redAnimation" @click="deleteItem">
+      <span>X</span>
     </button>
   </div>
 </template>

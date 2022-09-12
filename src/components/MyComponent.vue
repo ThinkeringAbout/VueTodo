@@ -13,7 +13,15 @@
 </template>
 
 <script>
+import { useStore } from "@/piniastore";
+
 export default {
+  setup() {
+    const store = useStore();
+    return {
+      store,
+    };
+  },
   name: "MyComponent",
   data() {
     return {
@@ -22,7 +30,7 @@ export default {
   },
   methods: {
     addNote() {
-      this.$store.commit("addItem", this.inputText);
+      this.store.addItem(this.inputText);
       this.inputText = "";
     },
   },
@@ -35,9 +43,7 @@ export default {
   flex-direction: column;
   min-height: calc(100% - 50px);
 }
-
 form {
-  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
   width: 100%;
   height: 100%;
   display: flex;

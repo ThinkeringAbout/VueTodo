@@ -1,35 +1,51 @@
 <template>
   <div class="list">
-    <TodoList
-      v-for="(item, index) in this.$store.state.items"
-      :key="index"
-      :text="item.text"
-      :isDone="item.isDone"
-      :listIndex="index"
-      @deleteItem="deleteItem(index)"
-      @taskDone="taskDone(index)"
-    />
+    <TransitionGroup name="fade">
+      <TodoList
+        v-for="(item, index) in this.store.items"
+        :key="item.id"
+        :text="item.text"
+        :isDone="item.isDone"
+        :listIndex="index"
+        @deleteItem="deleteItem(index)"
+        @taskDone="taskDone(index)"
+      />
+    </TransitionGroup>
   </div>
 </template>
 
 <script>
 import TodoList from "./Todolist.vue";
+import { useStore } from "@/piniastore";
 
 export default {
+  setup() {
+    const store = useStore();
+    return {
+      store,
+    };
+  },
   name: "ComputedList",
   components: {
     TodoList,
   },
   methods: {
-    addItem(itemText) {
-      this.$store.commit("addItem", itemText);
-    },
     deleteItem(index) {
-      this.$store.commit("deleteItem", index);
+      this.store.deleteItem(index);
     },
     taskDone(index) {
-      this.$store.commit("changeItemDoneState", index);
+      this.store.changeItemDoneState(index);
     },
   },
 };
 </script>
+
+<style>
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+</style>

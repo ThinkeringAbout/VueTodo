@@ -3,23 +3,14 @@
     <router-link class="link" to="/">New</router-link>
     <router-link class="link" to="/notes">See All</router-link>
   </div>
-  <router-view></router-view>
+  <transition name="page">
+    <router-view></router-view>
+  </transition>
 </template>
 
 <script>
 export default {
   name: "App",
-  methods: {
-    addItem(itemText) {
-      this.$store.commit("addItem", itemText);
-    },
-    deleteItem(index) {
-      this.$store.commit("deleteItem", index);
-    },
-    taskDone(index) {
-      this.$store.commit("changeItemDoneState", index);
-    },
-  },
 };
 </script>
 
@@ -29,16 +20,24 @@ export default {
   margin: 0;
   padding: 0;
 }
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.8s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
 .list {
   min-height: calc(100% - 50px);
   overflow-y: auto;
-  background: linear-gradient(to bottom, #a6c1ee 0%, #fbc2eb 100%) fixed;
 }
 #app {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100vh;
+  background: linear-gradient(to bottom, #a6c1ee 0%, #fbc2eb 100%) fixed;
 }
 .app-links {
   height: 50px;

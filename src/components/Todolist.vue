@@ -2,9 +2,15 @@
   <div class="todo-item" :class="isDone ? 'active' : ''">
     <template v-if="isDone">✔</template>
     <p>{{ text }}</p>
-    <router-link class="button" :to="'/notes/' + listIndex">✏</router-link>
-    <button @click="taskDone">✔</button>
-    <button @click="deleteItem">X</button>
+    <router-link class="button" :to="'/notes/' + listIndex"
+      ><span class="rotateButton">✏</span></router-link
+    >
+    <button class="button" @click="taskDone">
+      <span class="greenAnimation">✔</span>
+    </button>
+    <button class="button" @click="deleteItem">
+      <span class="redAnimation">X</span>
+    </button>
   </div>
 </template>
 
@@ -23,7 +29,24 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.rotateButton:hover {
+  transform: rotate(120deg);
+}
+.rotateButton {
+  transition: all 0.4s ease;
+}
+.greenAnimation,
+.redAnimation {
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+.greenAnimation:hover {
+  color: rgb(15, 232, 15);
+}
+.redAnimation:hover {
+  color: red;
+}
 .todo-item {
   width: 60%;
   margin: 10px auto;

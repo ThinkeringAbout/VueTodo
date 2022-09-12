@@ -8,7 +8,15 @@
 </template>
 
 <script>
+import { useStore } from "@/piniastore";
+
 export default {
+  setup() {
+    const store = useStore();
+    return {
+      store,
+    };
+  },
   name: "NoteChange",
   data() {
     return {
@@ -17,12 +25,12 @@ export default {
   },
   computed: {
     getText() {
-      return this.$store.state.items[this.$route.params.id].text;
+      return this.store.items[this.$route.params.id].text;
     },
   },
   methods: {
     changeNote() {
-      this.$store.commit("changeItemText", {
+      this.store.changeItemText({
         index: this.$route.params.id,
         itemText: this.inputText,
       });

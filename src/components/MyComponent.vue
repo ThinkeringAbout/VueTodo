@@ -78,4 +78,10 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+@media (max-width: 600px) {
+  input {
+    font-size: 10px;
+  }
+}
 </style>

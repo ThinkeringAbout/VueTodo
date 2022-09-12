@@ -87,4 +87,10 @@ button {
   color: #fff;
   text-decoration: none;
 }
+
+@media (max-width: 600px) {
+  .todo-item {
+    font-size: 10px;
+  }
+}
 </style>
